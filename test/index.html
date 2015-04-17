@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Closure DOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../node_modules/mocha/mocha.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script>CLOSURE_NO_DEPS = true;</script>
+    <script src="../vendor/google/base.js"></script>
+    <script src="../node_modules/unexpected/unexpected.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../src/dom.js"></script>
+    <script>
+      mocha.ui('bdd');
+
+      expect = weknowhow.expect;
+    </script>
+    <script src="./dom-test.js"></script>
+    <script>
+      window.onload = function () {
+        mocha.run();
+      };
+    </script>
+  </body>
+</html>
