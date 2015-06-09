@@ -42,6 +42,57 @@ goog.scope(function () {
   };
 
   /**
+   * @param {Element} element
+   * @param {string} className
+   *
+   * @return {boolean}
+   */
+  dom.hasClass = function (element, className) {
+    return element.className.split(/\s+/).indexOf(className) !== -1;
+  };
+
+  /**
+   * @param {Element} element
+   * @param {string} className
+   */
+  dom.addClass = function (element, className) {
+    if (!dom.hasClass(element, className)) {
+      element.className += ' ' + className;
+    }
+  };
+
+  /**
+   * @param {Element} element
+   * @param {string} className
+   */
+  dom.removeClass = function (element, className) {
+    if (dom.hasClass(element, className)) {
+      var parts = element.className.split(/\s+/);
+      var index = parts.indexOf(className);
+
+      parts.splice(index, 1);
+
+      element.className = parts.join(' ');
+    }
+  };
+
+  /**
+   * @param {Element} element
+   * @param {string} oldClassName
+   * @param {string} newClassName
+   */
+  dom.replaceClass = function (element, oldClassName, newClassName) {
+    if (dom.hasClass(element, oldClassName)) {
+      var parts = element.className.split(/\s+/);
+      var index = parts.indexOf(oldClassName);
+
+      parts[index] = newClassName;
+
+      element.className = parts.join(' ');
+    }
+  };
+
+  /**
    * @param {function()} callback
    */
   dom.waitForBody = function (callback) {

@@ -62,4 +62,119 @@ describe('dom', function () {
       });
     });
   });
+
+  describe('hasClass', function () {
+    it('returns false if there are no classes', function () {
+      var el = dom.createElement('div');
+
+      expect(dom.hasClass(el, 'test'), 'to be false');
+    });
+
+    it('returns false if there are classes but none match', function () {
+      var el = dom.createElement('div');
+      el.className = 'test';
+
+      expect(dom.hasClass(el, 'hello'), 'to be false');
+    });
+
+    it('returns true if the class matches', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'test';
+
+      expect(dom.hasClass(el, 'test'), 'to be true');
+    });
+  });
+
+  describe('addClass', function () {
+    it('adds a class', function () {
+      var el = dom.createElement('div');
+
+      dom.addClass(el, 'hello');
+
+      expect(el.className, 'to equal', ' hello');
+    });
+
+    it('adds multiple classes', function () {
+      var el = dom.createElement('div');
+
+      dom.addClass(el, 'hello');
+      dom.addClass(el, 'world');
+
+      expect(el.className, 'to equal', ' hello world');
+    });
+
+    it('removes duplicates', function () {
+      var el = dom.createElement('div');
+
+      dom.addClass(el, 'hello');
+      dom.addClass(el, 'hello');
+
+      expect(el.className, 'to equal', ' hello');
+    });
+  });
+
+  describe('removeClass', function () {
+    it('does nothing when the class is not found', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'world';
+
+      dom.removeClass(el, 'hello');
+
+      expect(el.className, 'to equal', 'world');
+    });
+
+    it('removes the class', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'world';
+
+      dom.removeClass(el, 'world');
+
+      expect(el.className, 'to equal', '');
+    });
+
+    it('removes the class from several', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'hello world';
+
+      dom.removeClass(el, 'world');
+
+      expect(el.className, 'to equal', 'hello');
+    });
+  });
+
+  describe('replaceClass', function () {
+    it('does nothing when the class is not found', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'world';
+
+      dom.replaceClass(el, 'hello', 'world');
+
+      expect(el.className, 'to equal', 'world');
+    });
+
+    it('replaces the class', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'world';
+
+      dom.replaceClass(el, 'world', 'hello');
+
+      expect(el.className, 'to equal', 'hello');
+    });
+
+    it('replaces the class from several', function () {
+      var el = dom.createElement('div');
+
+      el.className = 'hello world';
+
+      dom.replaceClass(el, 'world', 'moon');
+
+      expect(el.className, 'to equal', 'hello moon');
+    });
+  });
 });
