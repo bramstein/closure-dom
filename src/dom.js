@@ -96,13 +96,10 @@ goog.scope(function () {
    * @param {function()} callback
    */
   dom.waitForBody = function (callback) {
-    function check() {
-      if (document.body) {
-        callback();
-      } else {
-        setTimeout(check, 0);
-      }
+    if (document.body) {
+      callback();
+    } else {
+      document.addEventListener('DOMContentLoaded', callback);
     }
-    check();
   };
 });
