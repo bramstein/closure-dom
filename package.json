@@ -1,21 +1,18 @@
 {
   "name": "closure-dom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Closure Compiler compatible DOM methods.",
   "directories": {
     "test": "test"
   },
   "repository": "https://github.com/bramstein/closure-dom.git",
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com/)",
   "license": "BSD",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "=2.2.1",
     "unexpected": "^6.4.0"
   },
-  "scripts": {
-  }
+  "scripts": {}
 }
