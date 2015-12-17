@@ -63,6 +63,20 @@ describe('dom', function () {
     });
   });
 
+  describe('addListener', function () {
+    it('adds an event listener and receives an event', function (done) {
+      var event = new Event('test');
+      var el = dom.createElement('div');
+
+      dom.addListener(el, 'test', function (e) {
+        expect(e.type, 'to equal', 'test');
+        done();
+      });
+
+      el.dispatchEvent(event);
+    });
+  });
+
   describe('hasClass', function () {
     it('returns false if there are no classes', function () {
       var el = dom.createElement('div');

@@ -2,6 +2,12 @@ goog.provide('dom');
 
 goog.scope(function () {
   /**
+   * @type {boolean}
+   * @const
+   */
+  dom.SUPPORTS_ADDEVENTLISTENER = !!document.addEventListener;
+
+  /**
    * @param {string} name
    * @return {Element}
    */
@@ -93,13 +99,35 @@ goog.scope(function () {
   };
 
   /**
+   * @param {Element} element
+   * @param {string} event
+   * @param {function(Event)} callback
+   */
+  dom.addListener = function (element, event, callback) {
+    if (dom.SUPPORTS_ADDEVENTLISTENER) {
+      element.addEventListener(event, callback, false);
+    } else {
+      element.attachEvent(event, callback);
+    }
+  };
+
+  /**
    * @param {function()} callback
    */
   dom.waitForBody = function (callback) {
     if (document.body) {
       callback();
     } else {
-      document.addEventListener('DOMContentLoaded', callback);
+      if (dom.SUPPORTS_ADDEVENTLISTENER) {
+        dom.addListener(document, 'DOMContentLoaded', callback);
+      } else {
+        // IE8
+        document.onreadystatechange = function () {
+          if (document.readyState == 'interactive') {
+            callback();
+          }
+        };
+      }
     }
   };
 });
