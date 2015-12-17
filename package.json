@@ -1,6 +1,6 @@
 {
   "name": "closure-dom",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Closure Compiler compatible DOM methods.",
   "directories": {
     "test": "test"
