@@ -119,7 +119,7 @@ goog.scope(function () {
       callback();
     } else {
       if (dom.SUPPORTS_ADDEVENTLISTENER) {
-        dom.addListener(document, 'DOMContentLoaded', callback);
+        document.addEventListener('DOMContentLoaded', callback);
       } else {
         // IE8
         document.onreadystatechange = function () {
