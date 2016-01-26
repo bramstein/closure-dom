@@ -122,11 +122,11 @@ goog.scope(function () {
         document.addEventListener('DOMContentLoaded', callback);
       } else {
         // IE8
-        document.onreadystatechange = function () {
+        document.attachEvent('onreadystatechange', function () {
           if (document.readyState == 'interactive') {
             callback();
           }
-        };
+        });
       }
     }
   };
