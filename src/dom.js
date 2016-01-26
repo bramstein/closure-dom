@@ -123,7 +123,7 @@ goog.scope(function () {
       } else {
         // IE8
         document.attachEvent('onreadystatechange', function () {
-          if (document.readyState == 'interactive') {
+          if (document.readyState == 'interactive' || document.readyState == 'complete') {
             callback();
           }
         });
