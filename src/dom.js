@@ -114,23 +114,23 @@ goog.scope(function () {
   };
 
   /**
-   * @param {function(Event)} callback
+   * @param {function()} callback
    */
   dom.waitForBody = function (callback) {
     if (document.body) {
       callback();
     } else {
       if (dom.supportsAddEventListener()) {
-        document.addEventListener('DOMContentLoaded', function listener(e) {
+        document.addEventListener('DOMContentLoaded', function listener() {
           document.removeEventListener('DOMContentLoaded', listener);
-          callback(e);
+          callback();
         });
       } else {
         // IE8
-        document.attachEvent('onreadystatechange', function listener(e) {
+        document.attachEvent('onreadystatechange', function listener() {
           if (document.readyState == 'interactive' || document.readyState == 'complete') {
             document.detachEvent('onreadystatechange', listener);
-            callback(e);
+            callback();
           }
         });
       }
