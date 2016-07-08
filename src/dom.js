@@ -114,7 +114,7 @@ goog.scope(function () {
   };
 
   /**
-   * @param {function()} callback
+   * @param {function(Event)} callback
    */
   dom.waitForBody = function (callback) {
     if (document.body) {
