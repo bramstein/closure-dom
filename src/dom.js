@@ -2,10 +2,12 @@ goog.provide('dom');
 
 goog.scope(function () {
   /**
-   * @type {boolean}
-   * @const
+   * @private
+   * @return {boolean}
    */
-  dom.SUPPORTS_ADDEVENTLISTENER = !!document.addEventListener;
+  dom.supportsAddEventListener = function () {
+    return !!document.addEventListener;
+  };
 
   /**
    * @param {string} name
@@ -104,7 +106,7 @@ goog.scope(function () {
    * @param {function(Event)} callback
    */
   dom.addListener = function (element, event, callback) {
-    if (dom.SUPPORTS_ADDEVENTLISTENER) {
+    if (dom.supportsAddEventListener()) {
       element.addEventListener(event, callback, false);
     } else {
       element.attachEvent(event, callback);
@@ -118,7 +120,7 @@ goog.scope(function () {
     if (document.body) {
       callback();
     } else {
-      if (dom.SUPPORTS_ADDEVENTLISTENER) {
+      if (dom.supportsAddEventListener()) {
         document.addEventListener('DOMContentLoaded', function listener(e) {
           document.removeEventListener('DOMContentLoaded', listener);
           callback(e);
