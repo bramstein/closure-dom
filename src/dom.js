@@ -119,12 +119,16 @@ goog.scope(function () {
       callback();
     } else {
       if (dom.SUPPORTS_ADDEVENTLISTENER) {
-        document.addEventListener('DOMContentLoaded', callback);
+        document.addEventListener('DOMContentLoaded', function listener(e) {
+          document.removeEventListener('DOMContentLoaded', listener);
+          callback(e);
+        });
       } else {
         // IE8
-        document.attachEvent('onreadystatechange', function () {
+        document.attachEvent('onreadystatechange', function listener(e) {
           if (document.readyState == 'interactive' || document.readyState == 'complete') {
-            callback();
+            document.detachEvent('onreadystatechange', listener);
+            callback(e);
           }
         });
       }
