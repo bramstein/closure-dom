@@ -8,7 +8,7 @@
   "repository": "https://github.com/bramstein/closure-dom.git",
   "keywords": [],
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com/)",
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "dependencies": {},
   "devDependencies": {
     "mocha": "=2.2.1",
