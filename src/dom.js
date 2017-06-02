@@ -1,6 +1,8 @@
-goog.provide('dom');
+goog.provide('bramstein.dom');
 
 goog.scope(function () {
+  var dom = bramstein.dom;
+
   /**
    * @private
    * @return {boolean}

@@ -1,4 +1,6 @@
 describe('dom', function () {
+  var dom = bramstein.dom;
+
   describe('createElement', function () {
     it('creates an element', function () {
       expect(dom.createElement('div'), 'not to be null');
